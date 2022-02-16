@@ -64,24 +64,26 @@
 		 * @return true|false
 		 */
 
-		 public function insert($table,$attrs = [],$values = []){
+		 public function insert($table,$params = []){
 			 
-			 $sqlAttrs = '';
-			 $sqlValues = '';
+			 $values = [];
+			 $columns = '';
 			 $query = '';
+			 $labels = '';
 
 			 // form sql attributes and values
-			 foreach ($attrs as $key => $val) {
-				 $sqlAttrs.="$val,";
-				 $sqlValues.="?,";
+			 foreach ($params as $column => $value) {
+				 $values[] = $value;
+				 $columns.="$column,";
+				 $labels.="?,";
 			 }
 
 			 // remove last comma
-			 $sqlAttrs = rtrim($sqlAttrs,',');
-			 $sqlValues = rtrim($sqlValues,',');
+			 $columns = rtrim($columns,',');
+			 $labels = rtrim($labels,',');
 			 
 			 // form sql query
-			 $query = "INSERT INTO $table($sqlAttrs) VALUES($sqlValues)";
+			 $query = "INSERT INTO $table($columns) VALUES($labels)";
 
 			 // Prepare query
 			 $this->prepareQuery($query);
