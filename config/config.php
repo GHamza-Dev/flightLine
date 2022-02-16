@@ -18,7 +18,7 @@
    define('UPLOADS',ROOT.DS.'uploads');   
 
    // Database params
-   define('DB_NAME','blog');
+   define('DB_NAME','flightlight');
    define('DB_USER','root');
    define('DB_HOST','localhost');
    define('DB_PASSWD','');
