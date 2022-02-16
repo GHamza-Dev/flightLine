@@ -2,8 +2,8 @@
 
 class Router{
 
-  protected $currentController = 'home';
-  protected $currentMethod = 'index';
+  protected $controller = 'home';
+  protected $method = 'index';
   protected $params = [];
 
   function __construct()
