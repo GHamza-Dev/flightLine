@@ -3,11 +3,11 @@
 class BaseModel{
     protected $db = null;
     protected $table = null;
-    protected $id = null;
+    protected $primaryKey = null;
 
-    public function __construct($table,$id){
+    public function __construct($table,$primaryKey){
         $this->table = $table;
-        $this->id = $id;
+        $this->primaryKey = $primaryKey;
         $this->db = new Database();
     }
 }
