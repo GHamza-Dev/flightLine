@@ -7,7 +7,7 @@ class BaseModel{
 
     public function __construct($table,$id){
         $this->table = $table;
-        $this->db = $id;
+        $this->id = $id;
         $this->db = new Database();
     }
 }
