@@ -6,6 +6,7 @@ session_start();
 define('DS', DIRECTORY_SEPARATOR);
 require_once './config/config.php';
 require_once './dump.php';
+require_once './core/BaseModel.php';
 
 // Autoload core classes
 spl_autoload_register(function($className){

@@ -18,4 +18,9 @@ class Home extends Controller{
     public function _404(){
         $this->loadView('404',[]);
     }
+
+    public function addUser(){
+        $user = $this->getModelInstance('user');
+        $user->insertUser('HH123456','Hamza','Gassai','067398737','0000');
+    }
 }
