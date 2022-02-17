@@ -24,7 +24,7 @@
    define('DB_PASSWD','');
 
    // URL ROOT
-   define('URLROOT', 'http://localhost/');
+   define('URLROOT', 'http://localhost/flightline/');
 
    // Images url
    define('IMAGES', URLROOT.'/public/images');
