@@ -19,6 +19,10 @@ class Flight extends BaseModel{
         return $this->db->insert($this->table,$params);
     }
 
+    public function selectFlights(){
+        return $this->db->select($this->table);
+    }
+
     public function updateFlight($data,$id){
         $params = [
             'aFrom'=> $data[0],

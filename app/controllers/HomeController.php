@@ -61,4 +61,10 @@ class HomeController extends Controller{
         $flight = $this->getModelInstance('flight');
         $flight->deleteFlight($id);
     }
+
+    public function testGetFlights(){
+        $flight = $this->getModelInstance('flight');
+        dump($flight->selectFlights());
+    }
+
 }
