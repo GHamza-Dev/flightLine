@@ -41,7 +41,19 @@ class HomeController extends Controller{
         dump($user->selectUsers());
     }
 
-    public function testPost(){
-        dump($_POST);
+    public function testdeleteuser($id){
+        $user = $this->getModelInstance('user');
+        $user->deleteUser($id);
+    }
+    
+    public function testInsertFlight(){
+        $flight = $this->getModelInstance('flight');
+        $flight->insertFlight(['Korea','Rowanda',date('Y-m-d h:i:s'),date('Y-m-d h:i:s'),3,12,2]); 
+    }
+
+    public function testUpdateFlight($id){
+        $flight = $this->getModelInstance('flight');
+        $data = ['Updated-A','Updated-A',date('Y-m-d h:i:s'),date('Y-m-d h:i:s'),3,12,2];
+        $flight->updateFlight($data,$id);
     }
 }
