@@ -40,4 +40,8 @@ class HomeController extends Controller{
         $user = $this->getModelInstance('user');
         dump($user->selectUsers());
     }
+
+    public function testPost(){
+        dump($_POST);
+    }
 }

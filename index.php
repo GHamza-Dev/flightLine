@@ -5,6 +5,9 @@ session_start();
 // Define the directory deparator
 define('DS', DIRECTORY_SEPARATOR);
 require_once './config/config.php';
+require_once ROOT.'/helpers/filter.php';
+
+//! Only for debugging
 require_once './dump.php';
 require_once './core/BaseModel.php';
 
