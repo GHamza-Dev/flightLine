@@ -127,6 +127,11 @@
 
 		 }
 
+		 public function delete($table,$columnId,$valueId){
+			$this->prepareQuery("DELETE FROM $table WHERE $table.$columnId = ?");
+			return $this->execute([$valueId]);
+		 }
+
 		/**
 		 * 
 		 * Get result 
