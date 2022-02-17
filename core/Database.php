@@ -120,10 +120,30 @@
 			return $this->execute($values) ? $this->getRow() : false;
 		 }
 
-		 public function update($table,$params){
-			echo 'Working on update...';return;
-			$this->prepareQuery("UPDATE $table SET `body` = 'last but not least.' WHERE $table.`id` = ?");
-			// $query string;	
+		 /**
+		  * update records
+		  */
+
+		 public function update($table,$primaryKey,$keyValue,$params){
+			$values = [];
+			$statments = '';
+			$query = '';
+			// form sql attributes and values
+			foreach ($params as $column => $value) {
+			 $values[] = $value;
+			 $statments.="$column = ?,";
+			}
+
+			$values[] = $keyValue;
+			// remove last comma
+			$statments = rtrim($statments,',');
+			
+			// form sql query
+			$query = "UPDATE $table SET $statments WHERE $table.$primaryKey = ?";
+			// Prepare query
+			$this->prepareQuery($query);
+			// Execute query
+			return $this->execute($values);	
 
 		 }
 
