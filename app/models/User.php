@@ -28,6 +28,10 @@ class User extends BaseModel{
         return $this->db->select($this->table);
     }
 
+    public function deleteUser($id){
+        return $this->db->delete($this->table,$this->primaryKey,$id);
+    }
+
     
 
 }
