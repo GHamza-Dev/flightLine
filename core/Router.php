@@ -2,7 +2,7 @@
 
 class Router{
 
-  protected $controller = 'home';
+  protected $controller = 'homeController';
   protected $method = 'index';
   protected $params = [];
 
@@ -11,8 +11,8 @@ class Router{
     
     $url = $this->getRequestedUrl();
 
-    if (isset($url[0]) && file_exists(APPLICATION_PATH . '/controllers/' . $url[0] . '.php')) {
-      $this->controller = $url[0];
+    if (isset($url[0]) && file_exists(APPLICATION_PATH . '/controllers/' . ucwords($url[0]) . 'Controller.php')) {
+      $this->controller = ucwords($url[0]).'Controller';
       unset($url[0]);
     }
 
@@ -38,6 +38,6 @@ class Router{
 
   public function getRequestedUrl()
   {
-    return isset($_SERVER['PATH_INFO']) ? explode('/', trim($_SERVER['PATH_INFO'], '/')) : ['home', 'index'];
+    return isset($_SERVER['PATH_INFO']) ? explode('/', trim($_SERVER['PATH_INFO'], '/')) : ['HomeController', 'index'];
   }
 }

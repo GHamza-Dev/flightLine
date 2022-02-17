@@ -28,4 +28,6 @@ class User extends BaseModel{
         return $this->db->select($this->table);
     }
 
+    
+
 }
