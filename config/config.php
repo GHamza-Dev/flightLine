@@ -4,6 +4,10 @@
    define('ROOT', getcwd());
    // Application path
    define('APPLICATION_PATH', ROOT.DS.'app');
+   // Controllers path
+   define('CONTROLLERS', ROOT.DS.'app'.DS.'controllers');
+   // Controllers path
+   define('MODELS', ROOT.DS.'app'.DS.'models');
    // Config path
    define('CONFIG_PATH', ROOT.DS.'config');
    // core path
