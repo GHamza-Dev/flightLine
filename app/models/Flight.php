@@ -32,4 +32,8 @@ class Flight extends BaseModel{
         return $this->db->update($this->table,$this->primaryKey,$id,$params);
     }
 
+    public function deleteFlight($id){
+        return $this->db->delete($this->table,$this->primaryKey,$id);
+    }
+
 }

@@ -56,4 +56,9 @@ class HomeController extends Controller{
         $data = ['Updated-A','Updated-A',date('Y-m-d h:i:s'),date('Y-m-d h:i:s'),3,12,2];
         $flight->updateFlight($data,$id);
     }
+
+    public function testDeleteFlight($id){
+        $flight = $this->getModelInstance('flight');
+        $flight->deleteFlight($id);
+    }
 }
