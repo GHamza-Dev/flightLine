@@ -27,7 +27,7 @@ class Router{
     $this->params = $url;
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $this->params = filter($_POST);
+      $this->params = [filter($_POST)];
     }
 
     call_user_func_array([$this->controller, $this->method], $this->params);
