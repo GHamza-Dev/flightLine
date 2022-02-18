@@ -30,7 +30,4 @@ class FlightController extends Controller{
         $this->getFlights();
     }
 
-    public function upda
-
-
 }
