@@ -16,7 +16,7 @@
    define('PUBLIC_PATH', ROOT.DS.'public');
 
    // Sub directories
-   define('VIEWS_PATH', APPLICATION_PATH.DS.'views');
+   define('VIEWS', APPLICATION_PATH.DS.'views');
    
    // Uploads path
    define('UPLOADS',ROOT.DS.'uploads');   
