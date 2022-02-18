@@ -8,7 +8,7 @@ class HomeController extends Controller{
     }
 
     public function index(){
-        $this->loadView('index',[]);
+        $this->view('index',[]);
     }
     
     public function hi($name = ''){
@@ -16,7 +16,7 @@ class HomeController extends Controller{
     }
 
     public function _404(){
-        $this->loadView('404',[]);
+        $this->view('404',[]);
     }
 
     public function addUser(){
