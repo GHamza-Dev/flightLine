@@ -5,10 +5,15 @@
    */
   class Controller{
 
-    protected $modelInstance = null;
+    protected $model = null;
+    protected $data = [
+      'err' => false,
+      'alert' => '',
+      'title' => 'FlightLine'
+    ];
 
-    function __construct(){
-      
+    function __construct($model){
+      $this->setModelInstance($model);
     }
     
     /**
@@ -22,7 +27,7 @@
     public function setModelInstance($model){
       if(file_exists(APPLICATION_PATH.DS.'models'.DS.ucwords($model).'.php')){
         require_once APPLICATION_PATH.DS.'models'.DS.ucwords($model).'.php';
-        $this->modelInstance = new $model();
+        $this->model = new $model();
       }else die("Err : model '$model' does not exist <br><a href='".URLROOT."'>Go back</a>");
     }
     
@@ -50,7 +55,7 @@
      * 
      */
 
-    public function loadView($viewName,$data = []){
+    public function view($viewName,$data = []){
       // --
       if(file_exists(APPLICATION_PATH.DS.'views'.DS.$viewName.'.php')) 
       require_once APPLICATION_PATH.DS.'views'.DS.$viewName.'.php';
