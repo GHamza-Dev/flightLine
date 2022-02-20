@@ -24,7 +24,7 @@
                 <td><?= $flight['nbrPlaces'] ?></td>
                 <td><?= $flight['reservedPlaces'].'(?)' ?></td>
                 <td class="d-flex justify-content-evenly">
-                    <form action="" method="post">
+                    <form action="<?= URLROOT.'flight/updateFlight' ?>" method="post">
                         <input type="hidden" name="flightId" value="<?= $flight['flightID'] ?>">
                         <button class="btn btn-primary">Update</button>
                     </form>

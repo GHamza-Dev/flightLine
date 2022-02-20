@@ -23,6 +23,12 @@ class Flight extends BaseModel{
         return $this->db->select($this->table);
     }
 
+    public function selectFlightById($id){
+        $this->db->prepareQuery("SELECT * FROM $this->table WHERE $this->primaryKey = ?");
+        $this->db->execute([$id]);
+        return $this->db->getRow();
+    }
+
     public function updateFlight($data,$id){
         $params = [
             'aFrom'=> $data[0],
