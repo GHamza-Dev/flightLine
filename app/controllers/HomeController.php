@@ -69,8 +69,8 @@ class HomeController extends Controller{
 
     public function flights(){
         $flight = $this->getModelInstance('flight');
-        $flights = $flight->selectFlights();
-        echo json_encode($flights);
+        $flights = $flight->selectAvFlights('flightID','3');
+        dump($flights);
     }
 
 }
