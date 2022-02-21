@@ -1,5 +1,5 @@
 <?php require_once VIEWS.DS.'inc/header.php' ?>
-    <h1>Flights</h1>
+    <h1 class="fs-2 text-secondary mb-5">Flights</h1>
     <table class="table">
         <thead>
             <tr>

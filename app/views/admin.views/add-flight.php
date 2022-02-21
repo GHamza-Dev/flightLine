@@ -9,7 +9,7 @@ $values = $data['flight'] ?? null;
 ?>
 
 <?php require_once VIEWS.DS.'inc/header.php' ?>
-    <h1>Add Flight</h1>
+    <h1 class="fs-2 text-secondary mb-5">Add flight</h1>
     <form action="<?= URLROOT ?>flight/addFlight" method="post">
         <div class="mb-3">
             <label for="from" class="form-label">From</label>

@@ -8,7 +8,7 @@ class HomeController extends Controller{
     }
 
     public function index(){
-        $this->view('index',[]);
+        $this->view('user/index',[]);
     }
     
     public function hi($name = ''){
@@ -64,7 +64,13 @@ class HomeController extends Controller{
 
     public function testGetFlights(){
         $flight = $this->getModelInstance('flight');
-        dump($flight->selectFlights());
+        echo json_encode($flight->selectFlights());
+    }
+
+    public function flights(){
+        $flight = $this->getModelInstance('flight');
+        $flights = $flight->selectFlights();
+        echo json_encode($flights);
     }
 
 }
