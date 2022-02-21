@@ -19,8 +19,14 @@ class Flight extends BaseModel{
         return $this->db->insert($this->table,$params);
     }
 
-    public function selectFlights(){
-        return $this->db->select($this->table);
+    public function selectFlights($columns = [],$values = []){
+        return $this->db->select($this->table,$columns,$values);
+    }
+
+    public function selectAvFlights($column = 1,$value = 1){
+        $this->db->prepareQuery("SELECT * FROM $this->table WHERE `departTime` > NOW() AND $column LIKE ?");
+        $this->db->execute(["%$value%"]);
+        return $this->db->getResult();
     }
 
     public function selectFlightById($id){

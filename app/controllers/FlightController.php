@@ -7,13 +7,39 @@ class FlightController extends Controller{
     }
 
     public function index(){
-        $this->getFlights();
+        $this->getAvFlights();
     }
 
-    public function getFlights(){
-        $this->data['flights'] = $this->model->selectFlights();
+    public function loadTable(){
         $this->data['title'] = 'FlightLine || Flights';
         $this->view('admin.views/flights',$this->data);
+    }
+
+    public function getFlights($params = []){
+        $atr = $val = [];
+
+        if (!empty($params)){
+            $atr = [$params['select']];
+            $val = $params['value'];
+            $val = ["%$val%"];
+        }
+
+        $this->data['flights'] = $this->model->selectFlights($atr,$val);
+        $this->data['search-form'] = VIEWS.'/inc/forms/search.all.php';
+        $this->loadTable();
+    }
+
+    public function getAvFlights($params = []){
+        $column = $value = '1';
+
+        if (!empty($params['value']) && !empty($params['select'])) {
+            $column = $params['select'];
+            $value = $params['value'];
+        }
+
+        $this->data['flights'] = $this->model->selectAvFlights($column,$value);
+        $this->data['search-form'] = VIEWS.'/inc/forms/search.available.php';
+        $this->loadTable();
     }
 
     public function removeFlight($params = []){
