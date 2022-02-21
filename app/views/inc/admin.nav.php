@@ -13,8 +13,8 @@
               Flights
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item nav-link" aria-current="page" href="<?= URLROOT.'flight' ?>">All Flights</a></li>
-              <li><a class="dropdown-item nav-link" aria-current="page" href="<?= URLROOT.'flight' ?>">Flights</a></li>
+              <li><a class="dropdown-item nav-link" aria-current="page" href="<?= URLROOT.'flight/getFlights' ?>">All Flights</a></li>
+              <li><a class="dropdown-item nav-link" aria-current="page" href="<?= URLROOT.'flight/getAvFlights' ?>">Available</a></li>
             </ul>
         </li>
         <li class="nav-item">
@@ -24,10 +24,7 @@
           <a class="nav-link" href="<?= URLROOT.'' ?>">Users</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <?php require_once $data['search-form'] ?? VIEWS.'/inc/forms/search.available.php'; ?>
     </div>
   </div>
 </nav>
