@@ -26,11 +26,15 @@
                 <td class="d-flex justify-content-evenly">
                     <form action="<?= URLROOT.'flight/updateFlight' ?>" method="post">
                         <input type="hidden" name="flightId" value="<?= $flight['flightID'] ?>">
-                        <button class="btn btn-primary">Update</button>
+                        <button class="btn btn-primary">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
                     </form>
                     <form action="<?= URLROOT.'flight/removeFlight' ?>" method="post">
                         <input type="hidden" name="flightId" value="<?= $flight['flightID'] ?>">
-                        <button class="btn btn-danger">Delete</button>
+                        <button class="btn btn-danger">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
                     </form>
                 </td>
             </tr>
