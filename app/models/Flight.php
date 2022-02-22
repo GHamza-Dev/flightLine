@@ -29,6 +29,10 @@ class Flight extends BaseModel{
         return $this->db->getResult();
     }
 
+    public function selectAvFlights($columns = [],$values = []){
+        return $this->db->select('v_available',$columns,$values);
+    }
+
     public function selectFlightById($id){
         $this->db->prepareQuery("SELECT * FROM $this->table WHERE $this->primaryKey = ?");
         $this->db->execute([$id]);

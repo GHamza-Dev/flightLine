@@ -42,6 +42,34 @@ class FlightController extends Controller{
         $this->loadTable();
     }
 
+    public function availableFlights($params = []){
+        $columns = [];
+        $values = [];
+        if(!empty($params['from'])){
+            $columns[] = 'aFrom';
+            $values[] = $params['from'];
+        }
+        if(!empty($params['to'])){
+            $columns[] = 'aTo';
+            $values[] = $params['to'];
+        }
+        if(!empty($params['depart'])){
+            $columns[] = 'departTime';
+            $depArr = explode('T',$params['depart']);
+            $dep = $depArr[0].' '.$depArr[1];
+            $values[] = "%$dep%";
+        }
+        if(!empty($params['arrival'])){
+            $columns[] = 'arrivalTime';
+            $arArr = explode('T',$params['arrival']);
+            $ar = $arArr[0].' '.$arArr[1];
+            $values[] = "%$ar%";
+        }
+
+        $avf = $this->model->selectAvFlights($columns,$values);
+        dump($avf);return;
+    }
+
     public function removeFlight($params = []){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($params['flightId']) && !empty($params['flightId'])) {
