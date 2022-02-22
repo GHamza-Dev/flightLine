@@ -13,7 +13,6 @@ class BookingController extends Controller{
     public function bookings(){
         $bks = $this->model->selectBookings();
         $this->data['bookings'] = $bks;
-        // dump($bks);return;
         $this->view('admin.views/bookings',$this->data);
     }
 }
