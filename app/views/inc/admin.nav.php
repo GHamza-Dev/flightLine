@@ -14,7 +14,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li><a class="dropdown-item nav-link" aria-current="page" href="<?= URLROOT.'flight/getFlights' ?>">All Flights</a></li>
-              <li><a class="dropdown-item nav-link" aria-current="page" href="<?= URLROOT.'flight/getAvFlights' ?>">Available</a></li>
+              <li><a class="dropdown-item nav-link" aria-current="page" href="<?= URLROOT.'flight/getNextFlights' ?>">Next Flights</a></li>
             </ul>
         </li>
         <li class="nav-item">

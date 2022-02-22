@@ -7,7 +7,7 @@ class FlightController extends Controller{
     }
 
     public function index(){
-        $this->getAvFlights();
+        $this->getNextFlights();
     }
 
     public function loadTable(){
@@ -29,7 +29,7 @@ class FlightController extends Controller{
         $this->loadTable();
     }
 
-    public function getAvFlights($params = []){
+    public function getNextFlights($params = []){
         $column = $value = '1';
 
         if (!empty($params['value']) && !empty($params['select'])) {
@@ -37,8 +37,8 @@ class FlightController extends Controller{
             $value = $params['value'];
         }
 
-        $this->data['flights'] = $this->model->selectAvFlights($column,$value);
-        $this->data['search-form'] = VIEWS.'/inc/forms/search.available.php';
+        $this->data['flights'] = $this->model->selectNextFlights($column,$value);
+        $this->data['search-form'] = VIEWS.'/inc/forms/search.next.php';
         $this->loadTable();
     }
 
