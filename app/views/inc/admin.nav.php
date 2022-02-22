@@ -21,7 +21,7 @@
           <a class="nav-link" href="<?= URLROOT.'flight/addFlight' ?>">Add flight</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= URLROOT.'' ?>">Users</a>
+          <a class="nav-link" href="<?= URLROOT.'booking/bookings' ?>">Booking</a>
         </li>
       </ul>
       <?php require_once $data['search-form'] ?? VIEWS.'/inc/forms/search.available.php'; ?>
