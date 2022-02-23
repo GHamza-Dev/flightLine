@@ -47,11 +47,13 @@ class FlightController extends Controller{
         $values = [];
         if(!empty($params['from'])){
             $columns[] = 'aFrom';
-            $values[] = $params['from'];
+            $from = $params['from'];
+            $values[] = "%$from%";
         }
         if(!empty($params['to'])){
             $columns[] = 'aTo';
-            $values[] = $params['to'];
+            $to = $params['to'];
+            $values[] = "%$to%";
         }
         if(!empty($params['depart'])){
             $columns[] = 'departTime';
@@ -67,7 +69,8 @@ class FlightController extends Controller{
         }
 
         $avf = $this->model->selectAvFlights($columns,$values);
-        dump($avf);return;
+        $this->data['avFlights'] = $avf;
+        $this->view('user.views/pages/home',$this->data);
     }
 
     public function removeFlight($params = []){
