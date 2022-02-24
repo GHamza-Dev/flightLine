@@ -15,5 +15,6 @@
   <body>
     <div class="">
     <?php require_once VIEWS.DS.'inc/alert.php'; ?>
+    <?php require_once VIEWS.DS.'user.views/inc/nav.php'; ?>
 
   
