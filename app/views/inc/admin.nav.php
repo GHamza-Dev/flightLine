@@ -24,7 +24,10 @@
           <a class="nav-link" href="<?= URLROOT.'booking/bookings' ?>">Bookings</a>
         </li>
       </ul>
-      <?php require_once $data['search-form'] ?? VIEWS.'/inc/forms/search.available.php'; ?>
+      <?php
+        $path = isset($data['search-form']) ? $data['search-form'] : VIEWS.'/inc/forms/search.next.php';
+        require_once $path; 
+      ?>
     </div>
   </div>
 </nav>
