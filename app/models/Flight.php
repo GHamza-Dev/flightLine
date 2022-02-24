@@ -13,8 +13,7 @@ class Flight extends BaseModel{
             'departTime'=> $data[2],
             'arrivalTime'=> $data[3],
             'price' => $data[4],
-            'nbrPlaces'=> $data[5],
-            'reservedPlaces'=> $data[6]
+            'nbrPlaces'=> $data[5]
         ];
         return $this->db->insert($this->table,$params);
     }
