@@ -7,8 +7,8 @@ function filter($data){
         $data = htmlspecialchars($data);
     }elseif(is_array($data)){
         foreach($data as $key => $val){
-            $data[$key] = trim($val);
-            $data[$key] = htmlspecialchars($val);  
+            // $data[$key] = trim($val);
+            // $data[$key] = htmlspecialchars($val);  
         }
     }
     return $data;

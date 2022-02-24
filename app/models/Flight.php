@@ -33,6 +33,17 @@ class Flight extends BaseModel{
         return $this->db->select('v_available',$columns,$values);
     }
 
+    public function nbrOfAvSeats($id){
+        $this->db->prepareQuery("SELECT (nbrPlaces - reservedPlaces) as nbrOfAvSeats FROM $this->table WHERE $this->primaryKey = ?");
+        $this->db->execute([$id]);
+        return $this->db->getRow()['nbrOfAvSeats'];
+    }
+
+    public function updateReservedPlaces($flightId,$nbr = 1){
+        $this->db->prepareQuery("UPDATE $this->table SET `reservedPlaces` = `reservedPlaces` + ? WHERE $this->table.`$this->primaryKey` = ?");
+        return $this->db->execute([$nbr,$flightId]);
+    }
+
     public function selectFlightById($id){
         $this->db->prepareQuery("SELECT * FROM $this->table WHERE $this->primaryKey = ?");
         $this->db->execute([$id]);

@@ -13,7 +13,7 @@
 			try{
 				$this->pdo = new PDO("mysql:host=$this->host_name;dbname=$this->db_name",$this->user_name,$this->passwd);
 			}catch(PDOException $exp){
-				die($exp->getMessage());
+				die('Ops something went wrong!!!!');
 			}
 		}
 

@@ -12,6 +12,13 @@ class Booking extends BaseModel{
         return $this->db->getResult();
     }
 
-    
+    public function insertBooking($userId,$flightId){
+        $params = [
+            'userID' => $userId,
+            'flightID' => $flightId,
+            'date' => date('Y-m-d h:i:s')
+        ];
+        return $this->db->insert($this->table,$params) ? $this->db->lastInsertId() : false;
+    }
 
 }

@@ -73,6 +73,12 @@ class FlightController extends Controller{
         $this->view('user.views/pages/home',$this->data);
     }
 
+    public function availableSeats($params = []){
+        // $nbr = $this->model->nbrOfAvSeats($params['flightId']);
+        
+        echo json_encode($_POST);
+    }
+
     public function removeFlight($params = []){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($params['flightId']) && !empty($params['flightId'])) {

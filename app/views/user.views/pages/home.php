@@ -57,8 +57,8 @@
         <div><b class="text-danger">To <i class="fa-solid fa-plane-arrival"></i></b>: <?= $flight['aTo'] ?></div>
         <div><b class="text-info">Depart <i class="fa-solid fa-flag-checkered"></i></b>: <?= $flight['departTime'] ?></div>
         <div><b class="text-success">Arrival <i class="fa-solid fa-cannabis"></i></b>: <?= $flight['arrivalTime'] ?></div>
-        <form action="">
-          <input type="hidden" name="flightID" value="<?= $flight['flightID'] ?>">
+        <form action="<?= URLROOT.'booking/reserve' ?>" method="POST">
+          <input type="hidden" name="flightId" value="<?= $flight['flightID'] ?>">
           <button class="btn btn-dark float-md-end">Book | <?= $flight['price'] ?> <i class="fa-solid fa-dollar-sign"></i></button>
         </form>
       </div>
