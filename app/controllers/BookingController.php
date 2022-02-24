@@ -7,9 +7,7 @@ class BookingController extends Controller{
     }
 
     public function index(){
-        // $this->bookings();
-        dump(' ');
-        dump($this->model->insertBooking(9,37));
+        $this->bookings();
     }
 
     public function bookings(){
