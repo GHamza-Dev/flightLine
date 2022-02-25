@@ -23,7 +23,7 @@ class BookingController extends Controller{
         $flightMdl = $this->getModelInstance('Flight');
         $this->data['nbrOfAvSeats'] = $flightMdl->nbrOfAvSeats($params['flightId']);
         $this->data['flightId'] = $params['flightId'];
-        $this->data['userId'] = 12;
+        $this->data['userId'] = id();
         $this->view('user.views/pages/reserve',$this->data);
     }
 
