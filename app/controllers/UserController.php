@@ -57,7 +57,7 @@ class UserController extends Controller{
     }
 
     private function adminCheck(){
-        $allowedIps = ['192.168.8.107','127.0.0.1','::1'];
+        $allowedIps = ['192.168.8.107','127.0.0.1','::'];
         $currentIp = $_SERVER['REMOTE_ADDR'];
 
         if (in_array($currentIp,$allowedIps)) {

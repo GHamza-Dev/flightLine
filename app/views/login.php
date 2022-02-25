@@ -7,12 +7,6 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6 text-black">
-
-        <div class="px-5 ms-xl-4">
-          <i class="fa-solid fa-plane-departure fa-2x me-3 mt-xl-4 text-primary"></i>
-          <span class="fs-2 fw-bold mb-0 text-secondary">FlightLine</span>
-        </div>
-
         <div class="d-flex align-items-center px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
 
           <form action="<?= URLROOT.'user/login' ?>" method="post" style="width: 23rem;">
