@@ -3,7 +3,7 @@
     $email_err = isset($data['email_err']) ? $data['email_err'] : '';
     $pass_err = isset($data['pass_err']) ? $data['pass_err'] : '';
 ?>
-<div class="container my-5 border rounded-3">
+<div class="container my-5 border rounded-3" style="height: 510px;">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6 text-black">
@@ -37,7 +37,7 @@
 
       </div>
       <div class="col-md-6 px-0 d-none d-md-block">
-        <img src="<?= URLROOT.'public/images/connected_world_wuay.png' ?>" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+        <img src="<?= URLROOT.'public/images/connected_world_wuay.png' ?>" alt="Login image" class="w-100 h-100" style="object-fit: cover; object-position: left;">
       </div>
     </div>
   </div>
