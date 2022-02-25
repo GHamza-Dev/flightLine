@@ -12,8 +12,9 @@ class User extends BaseModel{
             'nic'=> $data[0],
             'firstName'=> $data[1],
             'lastName'=> $data[2],
-            'phone'=> $data[3],
-            'password' => $data[4]
+            'email' => $data[3],
+            'phone'=> $data[4],
+            'password' => $data[5]
         ];
         return $this->db->insert($this->table,$params);
     }

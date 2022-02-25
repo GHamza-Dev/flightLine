@@ -12,33 +12,33 @@
                 <div class="d-lg-flex gap-md-3">
                     <div class="form-outline mb-4">
                         <label class="form-label" for="fname">First Name</label>
-                        <input type="text" name="fname" id="fname" class="form-control form-control-lg" placeholder="Enter your first name" />
+                        <input required type="text" name="fname" id="fname" class="form-control form-control-lg" placeholder="Enter your first name" />
                     </div>
 
                     <div class="form-outline mb-4">
                         <label class="form-label" name="lname" for="lname">Last Name</label>
-                        <input type="text" id="lname" class="form-control form-control-lg" placeholder="Enter your last name" />
+                        <input required type="text" name="lname" id="lname" class="form-control form-control-lg" placeholder="Enter your last name" />
                     </div>
                 </div>
 
                 <div class="mb-4">
                   <label class="form-label" for="nic">NIC</label>
-                  <input type="text" name="nic" id="nic" class="form-control form-control-lg" placeholder="Enter your national identity card number" />
+                  <input required type="text" name="nic" id="nic" class="form-control form-control-lg" placeholder="Enter your national identity card number" />
                 </div>
 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="phone">Phone</label>
-                    <input type="tel" name="phone" id="phone" class="form-control form-control-lg" placeholder="Enter your phone number" />
+                    <input required type="tel" name="phone" id="phone" class="form-control form-control-lg" placeholder="Enter your phone number" />
                 </div>
                 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="email">Email</label>
-                    <input type="email" name="email" id="email" class="form-control form-control-lg" placeholder="Enter your email" />
+                    <input required type="email" name="email" id="email" class="form-control form-control-lg" placeholder="Enter your email" />
                 </div>
 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="pass">Password</label>
-                    <input type="password" name="pass" id="pass" class="form-control form-control-lg" placeholder="Choose a password" />
+                    <input required type="password" name="pass" id="pass" class="form-control form-control-lg" placeholder="Choose a password" />
                 </div>
                 
                 <div class="d-flex justify-content-center">

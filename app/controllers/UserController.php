@@ -83,6 +83,26 @@ class UserController extends Controller{
             $this->loadRegisterForm();
             return;
         }
+        
+        $data = [
+            $params['nic'],
+            $params['fname'],
+            $params['lname'],
+            $params['email'],
+            $params['phone'],
+            $params['pass']
+        ];
+
+        $this->data['err'] = true;
+        $this->data['alert'] = 'Ops something went wrong please try again!';
+
+        if ($this->model->insertUser($data)) {
+           $this->data['err'] = false; 
+           $this->data['alert'] = 'You have successfully registred';
+        }
+
+        $this->loadRegisterForm();
+
     }
     
 }
