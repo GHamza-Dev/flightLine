@@ -15,19 +15,20 @@ class UserController extends Controller{
     }
 
     private function validateForm($email,$pass){
-        $err = [];
-        $err['email'] = empty($email) ? 'Email can not be empty!' : '';
-        $err['pass'] = empty($pass) ? 'Password can not be empty!' : '';
 
-        if (!empty($err['email']) || !empty($err['pass'])) {
-            $this->data['err'] = $err;
+        $email_err = empty($email) ? 'Email can not be empty!' : '';
+        $pass_err = empty($pass) ? 'Password can not be empty!' : '';
+
+        if (!empty($email_err) || !empty($pass_err)) {
+            $this->data['email_err'] = $email_err;
+            $this->data['pass_err'] = $pass_err;
             $this->loadLoginForm();
             exit;
         }
     }
 
     public function login($params =  []){
-        if (!($_SERVER['REQUEST_METHOD'] === 'POST') || !isset($params['email']) || !isset($params['password'])) {
+        if (!($_SERVER['REQUEST_METHOD'] === 'POST') || !isset($params['email']) || !isset($params['passwd'])) {
             $this->loadLoginForm();
             return;
         }
@@ -46,7 +47,8 @@ class UserController extends Controller{
             }
         }
 
-        $this->data['err'] = 'Email or password is incorrect!';
+        $this->data['err'] = true;
+        $this->data['alert'] = 'Email or password is incorrect!';
         $this->loadLoginForm();
 
     }
