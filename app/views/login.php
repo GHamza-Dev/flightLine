@@ -29,7 +29,7 @@
               <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
             </div>
 
-            <p>Don't have an account? <a href="#!" class="link-danger">Register here</a></p>
+            <p>Don't have an account? <a href="<?= URLROOT . 'user/register' ?>" class="link-danger">Register here</a></p>
 
           </form>
 

@@ -13,6 +13,10 @@ class UserController extends Controller{
     private function loadLoginForm(){
         $this->view('login',$this->data);
     }
+    
+    private function loadRegisterForm(){
+        $this->view('register',$this->data);
+    }
 
     private function validateForm($email,$pass){
 
@@ -72,6 +76,13 @@ class UserController extends Controller{
 	    session_destroy();
         $this->redirect(URLROOT.'flight/availableFlights');
         exit;
+    }
+
+    public function register($params = []){
+        if (!($_SERVER['REQUEST_METHOD'] === 'POST')) {
+            $this->loadRegisterForm();
+            return;
+        }
     }
     
 }

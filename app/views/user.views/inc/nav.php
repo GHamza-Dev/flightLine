@@ -27,7 +27,7 @@
         <div class="d-flex">
           <a class="text-white p-2 border rounded text-decoration-none" href="<?= URLROOT . 'user/login' ?>">Login <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
           <span class="text-white mx-2 py-2"> | </span>
-          <a class="text-white p-2 border  rounded text-decoration-none" href="#">Register <i class="fa-solid fa-user-plus"></i></a>
+          <a class="text-white p-2 border  rounded text-decoration-none" href="<?= URLROOT . 'user/register' ?>">Register <i class="fa-solid fa-user-plus"></i></a>
         </div>
       <?php endif; ?>
     </div>
