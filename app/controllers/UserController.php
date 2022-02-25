@@ -52,5 +52,11 @@ class UserController extends Controller{
         $this->loadLoginForm();
 
     }
+
+    public function logout(){
+        session_unset();
+	    session_destroy();
+        $this->redirect('flight/availableFlights');
+    }
     
 }

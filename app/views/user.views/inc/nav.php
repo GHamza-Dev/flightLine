@@ -17,7 +17,7 @@
         </li>
       </ul>
       <?php if (auth()):?>
-        <a href="" class="text-white text-decoration-none">
+        <a href="<?= URLROOT.'user/logout' ?>" class="text-white text-decoration-none">
           <span class="text-decoration-underline me-1"><?= ucwords(username()) ?></span>
           <i class="fa-solid fa-right-from-bracket border border-2 border-secondary p-2 rounded-circle text-secondary"></i>
         </a>
