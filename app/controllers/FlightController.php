@@ -7,15 +7,17 @@ class FlightController extends Controller{
     }
 
     public function index(){
+        Auth::check('admin');
         $this->getNextFlights();
     }
 
-    public function loadTable(){
+    private function loadTable(){
         $this->data['title'] = 'FlightLine || Flights';
         $this->view('admin.views/flights',$this->data);
     }
 
     public function getFlights($params = []){
+        Auth::check('admin');
         $atr = $val = [];
 
         if (!empty($params)){
@@ -30,6 +32,7 @@ class FlightController extends Controller{
     }
 
     public function getNextFlights($params = []){
+        Auth::check('admin');
         $column = $value = '1';
 
         if (!empty($params['value']) && !empty($params['select'])) {
@@ -80,6 +83,7 @@ class FlightController extends Controller{
     }
 
     public function removeFlight($params = []){
+        Auth::check('admin');
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($params['flightId']) && !empty($params['flightId'])) {
                 if ($this->model->deleteFlight($params['flightId'])) {
@@ -93,12 +97,13 @@ class FlightController extends Controller{
         $this->getFlights();
     }
 
-    public function loadAddForm(){
+    private function loadAddForm(){
         $this->data['title'] = 'Add flight';
         $this->view('admin.views/add-flight',$this->data);
     }
 
     public function addFlight($params = null){
+        Auth::check('admin');
         if (!($_SERVER['REQUEST_METHOD'] === 'POST')) {
             $this->loadAddForm();
             return;
@@ -143,7 +148,7 @@ class FlightController extends Controller{
         }
     }
 
-    public function loadUpdateForm($id){
+    private function loadUpdateForm($id){
         $flight = $this->model->selectFlightById($id);
         $this->data['flight'] = $flight;
         $this->data['title'] = 'Update flight';
@@ -151,7 +156,7 @@ class FlightController extends Controller{
     }
 
     public function updateFlight($params = []){
-
+        Auth::check('admin');
         if (!($_SERVER['REQUEST_METHOD'] === 'POST')) {
             $this->redirect(URLROOT);
             exit;

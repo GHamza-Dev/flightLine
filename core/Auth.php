@@ -3,9 +3,10 @@
 
 class Auth{
     
-    public function __construct($id,$role = null){
+    public function __construct($id,$username,$role = null){
         $_SESSION['logged'] = true;
         $_SESSION['id'] = $id;
+        $_SESSION['username'] = $username;
         $_SESSION['role'] = $role;
     }
 

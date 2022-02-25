@@ -20,8 +20,17 @@ class User extends BaseModel{
 
     public function selectUserById($id){
         $this->db->prepareQuery("SELECT * FROM $this->table WHERE $this->primaryKey = ?");
-        return $this->db->execute([$id]) ? $this->db->getRow() : false;
-        
+        return $this->db->execute([$id]) ? $this->db->getRow() : false; 
+    }
+
+    public function emailExist($email){
+        $this->db->prepareQuery("SELECT * FROM $this->table WHERE email = ?");
+        return $this->db->execute([$email]) ? $this->db->getRow() : false;
+    }
+
+    public function userExist($email,$passwd){
+        $this->db->prepareQuery("SELECT * FROM $this->table WHERE email = ? AND password = ?");
+        return $this->db->execute([$email,$passwd]) ? $this->db->getRow() : false;
     }
 
     public function selectUsers(){

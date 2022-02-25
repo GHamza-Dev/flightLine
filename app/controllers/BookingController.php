@@ -7,16 +7,19 @@ class BookingController extends Controller{
     }
 
     public function index(){
+        Auth::check('admin');
         $this->bookings();
     }
 
     public function bookings(){
+        Auth::check('admin');
         $bks = $this->model->selectBookings();
         $this->data['bookings'] = $bks;
         $this->view('admin.views/bookings',$this->data);
     }
 
     public function _reserve($params){
+        Auth::check();
         $flightMdl = $this->getModelInstance('Flight');
         $this->data['nbrOfAvSeats'] = $flightMdl->nbrOfAvSeats($params['flightId']);
         $this->data['flightId'] = $params['flightId'];
@@ -25,6 +28,7 @@ class BookingController extends Controller{
     }
 
     public function reserve($params = []){
+        Auth::check();
         if (!($_SERVER['REQUEST_METHOD'] === 'POST')) {header("HTTP/1.0 404 Not Found");exit;}
 
         if (isset($params['flightId'])) {
