@@ -6,6 +6,7 @@ session_start();
 define('DS', DIRECTORY_SEPARATOR);
 require_once './config/config.php';
 require_once ROOT.'/helpers/filter.php';
+require_once ROOT.'/helpers/session.php';
 
 //! Only for debugging
 require_once './dump.php';

@@ -16,9 +16,18 @@
           <a class="nav-link" href="#">Pricing</a>
         </li>
       </ul>
-      <div class="d-flex">
-        <a class="text-white p-2 border rounded text-decoration-none" href="#">Login <i class="fa-solid fa-arrow-right-to-bracket"></i></a> <span class="text-white mx-2 py-2"> | </span> <a class="text-white p-2 border  rounded text-decoration-none" href="#">Register <i class="fa-solid fa-user-plus"></i></a>
-      </div>
+      <?php if (auth()):?>
+        <a href="" class="text-white text-decoration-none">
+          <span class="text-decoration-underline me-1"><?= ucwords(username()) ?></span>
+          <i class="fa-solid fa-right-from-bracket border border-2 border-secondary p-2 rounded-circle text-secondary"></i>
+        </a>
+      <?php else: ?> 
+        <div class="d-flex">
+          <a class="text-white p-2 border rounded text-decoration-none" href="<?= URLROOT.'user/login' ?>">Login <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+          <span class="text-white mx-2 py-2"> | </span> 
+          <a class="text-white p-2 border  rounded text-decoration-none" href="#">Register <i class="fa-solid fa-user-plus"></i></a>
+        </div>
+      <?php endif; ?>  
     </div>
   </div>
 </nav>
