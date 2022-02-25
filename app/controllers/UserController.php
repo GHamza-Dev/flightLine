@@ -56,7 +56,8 @@ class UserController extends Controller{
     public function logout(){
         session_unset();
 	    session_destroy();
-        $this->redirect('flight/availableFlights');
+        $this->redirect(URLROOT.'flight/availableFlights');
+        exit;
     }
     
 }
