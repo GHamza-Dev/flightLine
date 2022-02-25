@@ -9,7 +9,6 @@ require_once ROOT.'/helpers/filter.php';
 
 //! Only for debugging
 require_once './dump.php';
-require_once './core/BaseModel.php';
 
 // Autoload core classes
 spl_autoload_register(function($className){
