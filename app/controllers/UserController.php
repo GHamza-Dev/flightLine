@@ -28,6 +28,9 @@ class UserController extends Controller{
     }
 
     public function login($params =  []){
+
+        $this->adminCheck();
+
         if (!($_SERVER['REQUEST_METHOD'] === 'POST') || !isset($params['email']) || !isset($params['passwd'])) {
             $this->loadLoginForm();
             return;
@@ -51,6 +54,17 @@ class UserController extends Controller{
         $this->data['alert'] = 'Email or password is incorrect!';
         $this->loadLoginForm();
 
+    }
+
+    private function adminCheck(){
+        $allowedIps = ['192.168.8.107','127.0.0.1','::1'];
+        $currentIp = $_SERVER['REMOTE_ADDR'];
+
+        if (in_array($currentIp,$allowedIps)) {
+            new Auth($currentIp,'FlightLine','admin');
+            header('location:'.URLROOT.'flight');
+            exit;
+        }
     }
 
     public function logout(){

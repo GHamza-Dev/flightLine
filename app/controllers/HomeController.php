@@ -7,7 +7,7 @@ class HomeController extends Controller{
     }
 
     public function index(){
-        Auth::check();
+        Auth::check('admin');
         $this->view('index',[]);
     }
     
