@@ -74,6 +74,13 @@ class BookingController extends Controller{
         $this->view('user.views/pages/bookings',$this->data);
     }
 
+    private function somethingWentWrong(){
+        $this->data['err'] = true;
+        $this->data['alert'] = 'Ops something went wrong';
+        $this->view('user.views/pages/booking',$this->data);
+        exit;
+    }
+
     public function updatePassanger($params = []){
         Auth::check();
         if (!($_SERVER['REQUEST_METHOD'] === 'POST') || !isset($params['updatePsgr'])) {
@@ -92,10 +99,7 @@ class BookingController extends Controller{
             exit;
         }
 
-        $this->data['err'] = true;
-        $this->data['alert'] = 'Ops something went wrong';
-
-        $this->view('user.views/pages/booking',$this->data);
+        $this->somethingWentWrong();
 
     }
 
@@ -117,10 +121,7 @@ class BookingController extends Controller{
             }  
         }
 
-        $this->data['err'] = true;
-        $this->data['alert'] = 'Ops something went wrong';
-
-        $this->view('user.views/pages/booking',$this->data);
+        $this->somethingWentWrong();
     }
 
     public function cancelBooking($params = []){
@@ -137,9 +138,6 @@ class BookingController extends Controller{
             exit;
         }
 
-        $this->data['err'] = true;
-        $this->data['alert'] = 'Ops something went wrong';
-
-        $this->view('user.views/pages/booking',$this->data);
+        $this->somethingWentWrong();
     }
 }
