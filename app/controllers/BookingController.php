@@ -74,6 +74,7 @@ class BookingController extends Controller{
     }
 
     public function updatePassanger($params = []){
+        Auth::check();
         if (!($_SERVER['REQUEST_METHOD'] === 'POST') || !isset($params['updatePsgr'])) {
             header('location:'.URLROOT.'booking/mybookings');
             exit;
@@ -95,5 +96,29 @@ class BookingController extends Controller{
 
         $this->view('user.views/pages/booking',$this->data);
 
+    }
+
+    public function removePassanger($params = []){
+        Auth::check();
+        if (!($_SERVER['REQUEST_METHOD'] === 'POST') || !isset($params['deletePsgr'])) {
+            header('location:'.URLROOT.'booking/mybookings');
+            exit;
+        }
+        $id = $params['deletePsgr'];
+        $flight_id = $params['flightId'];
+        $psgrMdl = $this->getModelInstance('Passanger');
+        $flightMdl = $this->getModelInstance('Flight');
+        
+        if ($psgrMdl->deletePassanger($id)) {
+            if ($flightMdl->decreaseReservedSeats($flight_id)) {
+                header('location:'.URLROOT.'booking/mybookings');
+                exit;
+            }  
+        }
+
+        $this->data['err'] = true;
+        $this->data['alert'] = 'Ops something went wrong';
+
+        $this->view('user.views/pages/booking',$this->data);
     }
 }

@@ -66,4 +66,9 @@ class Flight extends BaseModel{
         return $this->db->delete($this->table,$this->primaryKey,$id);
     }
 
+    public function decreaseReservedSeats($flightId,$nbr = 1){
+        $this->db->prepareQuery("UPDATE $this->table SET `reservedPlaces` = `reservedPlaces` - ? WHERE $this->table.`$this->primaryKey` = ?");
+        return $this->db->execute([$nbr,$flightId]);
+    }
+
 }

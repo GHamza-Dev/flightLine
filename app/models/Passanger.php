@@ -18,4 +18,8 @@ class Passanger extends BaseModel{
         return $this->db->execute([$fname,$lname,$bdate,$id]);
     }
 
+    public function deletePassanger($id){
+        return $this->db->delete($this->table,$this->primaryKey,$id);
+    }
+
 }

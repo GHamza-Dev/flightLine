@@ -21,7 +21,8 @@
                             data-bs-target="#update-psgr">
                                 <i class="text-primary fa-solid fa-pen-to-square"></i>
                             </button>
-                            <form method="POST">
+                            <form method="POST" action="<?= URLROOT.'booking/removePassanger' ?>">
+                                <input name="flightId" value="<?= $bk['flightID'] ?>" type="hidden">
                                 <button value="<?= $bk['passengerID'] ?>" class="btn border" type="submit" name="deletePsgr">
                                 <i class="text-warning fa-solid fa-user-slash"></i> 
                                 </button>
@@ -31,17 +32,21 @@
                 <?php endforeach; ?>
             </div>
             <div class="border py-2">
-                <p><b>Appointment: </b> <?= $bookings[0]['departTime'] ?></p>
-                <p><b>From: </b> <?= $bookings[0]['aFrom'] ?></p>
-                <p><b>To: </b> <?= $bookings[0]['aTo'] ?></p>
-                <div class="d-flex">
-                    <form action="#" method="post">
-                        <button class="btn btn-danger">Cancel</button>
-                    </form>
-                    <form class="ms-2" action="#" method="post">
-                        <button class="btn btn-primary"><i class="fa-solid fa-print"></i></button>
-                    </form>
-                </div>
+                <?php if(isset($bookings[0]['departTime'])): ?>
+                    <p><b>Appointment: </b> <?= $bookings[0]['departTime'] ?></p>
+                    <p><b>From: </b> <?= $bookings[0]['aFrom'] ?></p>
+                    <p><b>To: </b> <?= $bookings[0]['aTo'] ?></p>
+                    <div class="d-flex">
+                        <form action="#" method="post">
+                            <button class="btn btn-danger">Cancel</button>
+                        </form>
+                        <form class="ms-2" action="#" method="post">
+                            <button class="btn btn-primary"><i class="fa-solid fa-print"></i></button>
+                        </form>
+                    </div>
+                <?php else: ?>
+                    <p>You don't have any instance booking <a href="<?= URLROOT.'flight/availableFlights' ?>">Book Now?</a></p>
+                <?php endif; ?>
             </div>
         </div>
     </div>
