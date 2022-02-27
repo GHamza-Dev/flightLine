@@ -21,4 +21,16 @@ class Booking extends BaseModel{
         return $this->db->insert($this->table,$params) ? $this->db->lastInsertId() : false;
     }
 
+    public function selectUserBookings($id){
+        $this->db->prepareQuery(
+        "SELECT user.userID , reservation.*,passanger.*,flight.* 
+        FROM flight JOIN (user JOIN reservation ON reservation.userID = user.userID) 
+        ON flight.flightID = reservation.flightID JOIN passanger ON passanger.reservationID = reservation.reservationID 
+        WHERE user.userID = ? AND flight.departTime > NOW()");
+
+        $this->db->execute([$id]);
+            
+        return $this->db->getResult();
+    }
+
 }
