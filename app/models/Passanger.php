@@ -11,4 +11,11 @@ class Passanger extends BaseModel{
         return $this->db->execute([$resId,$firstName,$lastName,$birthDay]);
     }
 
+    public function updatePassanger($id,$fname,$lname,$bdate){
+        $this->db->prepareQuery("UPDATE $this->table 
+        SET `firstName` = ? , `lastName` = ? ,`birthDay` = ?
+        WHERE $this->table.$this->primaryKey = ?");
+        return $this->db->execute([$fname,$lname,$bdate,$id]);
+    }
+
 }

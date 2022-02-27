@@ -72,4 +72,28 @@ class BookingController extends Controller{
         $this->data['bookings'] = $myBookings;
         $this->view('user.views/pages/bookings',$this->data);
     }
+
+    public function updatePassanger($params = []){
+        if (!($_SERVER['REQUEST_METHOD'] === 'POST') || !isset($params['updatePsgr'])) {
+            header('location:'.URLROOT.'booking/mybookings');
+            exit;
+        }
+
+        $id = $params['updatePsgr'];
+        $fname = $params['fname'];
+        $lname = $params['lname'];
+        $bdate = $params['bdate'];
+        $psgrMdl = $this->getModelInstance('Passanger');
+
+        if ($psgrMdl->updatePassanger($id,$fname,$lname,$bdate)) {
+            header('location:'.URLROOT.'booking/mybookings');
+            exit;
+        }
+
+        $this->data['err'] = true;
+        $this->data['alert'] = 'Ops something went wrong';
+
+        $this->view('user.views/pages/booking',$this->data);
+
+    }
 }

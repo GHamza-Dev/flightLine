@@ -49,7 +49,7 @@
 
 <!-- Update passanger modal -->
 <div class="modal fade" id="update-psgr" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-  <form method="POST" class="modal-dialog">
+  <form method="POST" action="<?= URLROOT.'booking/updatePassanger' ?>" class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Edit passanger</h5>
