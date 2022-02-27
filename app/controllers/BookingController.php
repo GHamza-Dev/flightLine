@@ -68,6 +68,7 @@ class BookingController extends Controller{
     }
 
     public function mybookings(){
+        Auth::check();
         $myBookings = $this->model->selectUserBookings(id());
         $this->data['bookings'] = $myBookings;
         $this->view('user.views/pages/bookings',$this->data);
