@@ -121,4 +121,24 @@ class BookingController extends Controller{
 
         $this->view('user.views/pages/booking',$this->data);
     }
+
+    public function cancelBooking($params = []){
+        Auth::check();
+        if (!($_SERVER['REQUEST_METHOD'] === 'POST') || !isset($params['bookingId'])) {
+            header('location:'.URLROOT.'booking/mybookings');
+            exit;
+        }
+
+        $id = $params['bookingId'];
+
+        if($this->model->deleteBooking($id)){
+            header('location:'.URLROOT.'booking/mybookings');
+            exit;
+        }
+
+        $this->data['err'] = true;
+        $this->data['alert'] = 'Ops something went wrong';
+
+        $this->view('user.views/pages/booking',$this->data);
+    }
 }

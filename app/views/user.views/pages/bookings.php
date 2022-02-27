@@ -37,8 +37,8 @@
                     <p><b>From: </b> <?= $bookings[0]['aFrom'] ?></p>
                     <p><b>To: </b> <?= $bookings[0]['aTo'] ?></p>
                     <div class="d-flex">
-                        <form action="#" method="post">
-                            <button class="btn btn-danger">Cancel</button>
+                        <form action="<?= URLROOT.'booking/cancelBooking' ?>" method="post">
+                            <button name="bookingId" value="<?= $bookings[0]['reservationID'] ?>" class="btn btn-danger">Cancel</button>
                         </form>
                         <form class="ms-2" action="#" method="post">
                             <button class="btn btn-primary"><i class="fa-solid fa-print"></i></button>

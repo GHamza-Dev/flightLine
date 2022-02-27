@@ -33,4 +33,9 @@ class Booking extends BaseModel{
         return $this->db->getResult();
     }
 
+
+    public function deleteBooking($id){
+        return $this->db->delete($this->table,$this->primaryKey,$id);
+    }
+
 }
