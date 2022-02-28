@@ -22,13 +22,13 @@
    define('UPLOADS',ROOT.DS.'uploads');   
 
    // Database params
-   define('DB_NAME','flightlight');
-   define('DB_USER','root');
-   define('DB_HOST','localhost');
-   define('DB_PASSWD','');
+   define('DB_NAME','sql11475468');
+   define('DB_USER','sql11475468');
+   define('DB_HOST','sql11.freesqldatabase.com');
+   define('DB_PASSWD','1VUANpUEMw');
 
    // URL ROOT
-   define('URLROOT', 'http://localhost/flightline/');
+   define('URLROOT', 'https://flightline.herokuapp.com/');
 
    // Images url
    define('IMAGES', URLROOT.'/public/images');
