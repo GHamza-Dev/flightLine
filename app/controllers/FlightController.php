@@ -7,8 +7,7 @@ class FlightController extends Controller{
     }
 
     public function index(){
-        Auth::check('admin');
-        $this->getNextFlights();
+        $this->view('user.views/pages/home',[]);
     }
 
     private function loadTable(){
@@ -72,8 +71,7 @@ class FlightController extends Controller{
         }
 
         $avf = $this->model->selectAvFlights($columns,$values);
-        $this->data['avFlights'] = $avf;
-        $this->view('user.views/pages/home',$this->data);
+        echo json_encode($avf);
     }
 
     public function availableSeats($params = []){

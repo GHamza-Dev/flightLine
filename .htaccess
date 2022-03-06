@@ -1,7 +1,7 @@
 Options -MultiViews
 
 RewriteEngine On
-RewriteBase /
+RewriteBase /flightline
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
