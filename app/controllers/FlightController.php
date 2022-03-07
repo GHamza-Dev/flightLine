@@ -79,12 +79,6 @@ class FlightController extends Controller{
         echo json_encode($rFlghts);
     }
 
-    public function availableSeats($params = []){
-        // $nbr = $this->model->nbrOfAvSeats($params['flightId']);
-        
-        echo json_encode($_POST);
-    }
-
     public function removeFlight($params = []){
         Auth::check('admin');
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
