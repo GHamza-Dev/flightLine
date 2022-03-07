@@ -74,6 +74,11 @@ class FlightController extends Controller{
         echo json_encode($avf);
     }
 
+    public function returnFlights($id = 0){
+        $rFlghts = $this->model->selectReturnFlights($id);
+        echo json_encode($rFlghts);
+    }
+
     public function availableSeats($params = []){
         // $nbr = $this->model->nbrOfAvSeats($params['flightId']);
         

@@ -31,6 +31,16 @@ class Flight extends BaseModel{
     public function selectAvFlights($columns = [],$values = []){
         return $this->db->select('v_available',$columns,$values);
     }
+    
+    public function selectReturnFlights($id){
+        $this->db->prepareQuery(
+            "SELECT * FROM v_available 
+            WHERE aFrom = (SELECT aTo FROM v_available WHERE flightID = ?)
+            AND departTime > (SELECT arrivalTime FROM v_available WHERE flightID = ?)"
+        );
+        $this->db->execute([$id,$id]);
+        return $this->db->getResult();
+    }
 
     public function nbrOfAvSeats($id){
         $this->db->prepareQuery("SELECT (nbrPlaces - reservedPlaces) as nbrOfAvSeats FROM $this->table WHERE $this->primaryKey = ?");
