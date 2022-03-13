@@ -35,11 +35,43 @@
   </div>
 
 </div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#go_to_reserve">
+  Launch static backdrop modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="go_to_reserve" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form id="continue-reservation-form" class="modal-content" action="<?= URLROOT . 'booking/reserve' ?>" method="POST">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Continue booking</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex align-items-center text-white bg-success my-1 p-2 rounded" ><strong>From:&nbsp;</strong> <p class="m-0 info-from"> not specified</p></div>
+        <div class="d-flex align-items-center text-white bg-dark my-1 p-2 rounded" ><strong>To:&nbsp;</strong> <p class="m-0 info-to"> not specified</p></div>
+        <div class="d-flex align-items-center text-white bg-info my-1 p-2 rounded" ><strong>Round-trip:&nbsp;</strong> <p class="m-0 info-roundtrip"> not specified</p></div>
+        <input id="flightId" type="hidden" name="flightId" value="">
+        <input id="rFlightId" type="hidden" name="rFlightId" value="null">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Continue</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <script>
   const url = 'http://localhost/flightline/flight/availableFlights';
   const form = document.getElementById('search-form');
   const flights = document.querySelector('.flights');
   const checkRoundTrip = document.getElementById('round-trip');
+  const bookForm = document.getElementById('continue-reservation-form');
+  let returnFlightId = null;
+  let roundTrip = false;
 
   async function getFlights() {
     const res = await fetch(url);
@@ -71,11 +103,10 @@
           <div><b class="text-danger">From <i class="fa-solid fa-plane-departure"></i></b>:  ${flight['aFrom']} </div>
           <div><b class="text-danger">To <i class="fa-solid fa-plane-arrival"></i></b>:  ${flight['aTo']} </div>
           <div><b class="text-info">Depart <i class="fa-solid fa-flag-checkered"></i></b>:  ${flight['departTime']} </div>
-          <div><b class="text-success">Arrival <i class="fa-solid fa-cannabis"></i></b>:  ${flight['arrivalTime']} </div>
-          <form action="<?= URLROOT . 'booking/reserve' ?>" method="POST">
-            <input class='flightId' type="hidden" name="flightId" value="${flight['flightID']}">
-            <button class="btn btn-dark float-md-end">Book |  ${flight['price']}   <i class="fa-solid fa-dollar-sign"></i></button>
-          </form>
+          <div><b class="text-success">Arrival <i class="fa-solid fa-cannabis"></i></b>:  ${flight['arrivalTime']} </div> 
+          <div>
+            <button class="book-btn btn btn-dark float-md-end" data-from='${flight['aFrom']}' data-to='${flight['aTo']}' data-flightid='${flight['flightID']}' data-bs-toggle="modal" data-bs-target="#go_to_reserve">Book |  ${flight['price']}   <i class="fa-solid fa-dollar-sign"></i></button>
+          </div>
         </div>
         <div class='return container bg-white' data-flightid='${flight['flightID']}'>
         
@@ -83,8 +114,18 @@
       </div>`;
     });
     element.innerHTML = html;
+    document.querySelectorAll('.book-btn').forEach(b=>{
+      b.addEventListener('click',()=>{
+        console.log(b.dataset.flightid,returnFlightId);
+        document.getElementById('flightId').value = b.dataset.flightid;
+        document.getElementById('rFlightId').value = returnFlightId;
+        document.querySelector('.info-from').textContent = b.dataset.from;;
+        document.querySelector('.info-to').textContent = b.dataset.to;
+        document.querySelector('.info-roundtrip').textContent = (roundTrip && returnFlightId) ? 'Yes' : 'No';
+      });
+    });
   }
-
+  
   function showReturnFlights(element, rFlights) {
     let html = rFlights.length < 1 ? `<p class='fs-5 text-info'>No return flights occurs!</p>` : ``;
     rFlights.forEach(flight => {
@@ -94,11 +135,17 @@
           Return: ${flight['departTime']}
         </div> 
         <div>
-        ${flight['price']}$ <input class='form-check-input' name='return' type='radio' />
+        ${flight['price']}$ <input value='${flight['flightID']}' class='returnRadio form-check-input' name='return' type='radio' />
         </div>
       </div>`;
     });
     element.innerHTML = html;
+
+    document.querySelectorAll('.returnRadio').forEach(r=>{
+      r.addEventListener('click',()=>{
+        returnFlightId = r.value;
+      });
+    });
   }
 
   function scrollDown(){
@@ -122,11 +169,18 @@
   });
 
   checkRoundTrip.addEventListener('change',(e)=>{
+    roundTrip = !roundTrip;
     scrollDown();
+
+    if (!roundTrip) {
+      document.querySelectorAll('.return').forEach(el => el.style.display = 'none');
+      return;}
+    
     let returnFlights;
     document.querySelectorAll('.return').forEach(async (el) => {
       returnFlights = await getReturnFlights(el.dataset.flightid);
       showReturnFlights(el,returnFlights);
+      el.style.display = '';
     });
   });
   

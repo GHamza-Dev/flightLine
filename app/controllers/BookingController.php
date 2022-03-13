@@ -21,10 +21,31 @@ class BookingController extends Controller{
     public function _reserve($params){
         Auth::check();
         $flightMdl = $this->getModelInstance('Flight');
-        $this->data['nbrOfAvSeats'] = $flightMdl->nbrOfAvSeats($params['flightId']);
+        $this->data['nbrOfAvSeats'][] = $flightMdl->nbrOfAvSeats($params['flightId']);
+        $this->data['nbrOfAvSeats'][] = $params['rFlightId'] ? $flightMdl->nbrOfAvSeats($params['rFlightId']): false;
         $this->data['flightId'] = $params['flightId'];
+        $this->data['rFlightId'] = $params['rFlightId'];
         $this->data['userId'] = id();
         $this->view('user.views/pages/reserve',$this->data);
+    }
+
+    public function _reservePassanger($bookingId,$params){
+        $fname = $params['fname'];
+        $lname = $params['lname'];
+        $bdate = $params['date'];
+        $nbrOfPassangers = count($fname);
+        $passangerMdl = $this->getModelInstance('Passanger');
+        $i = 0;
+        foreach ($fname as $fn) {
+            $passangerMdl->insertPassenger($bookingId,$fn,$lname[$i],$bdate[$i]);
+            $i++;
+        }
+        return ($nbrOfPassangers == $i) ? $i : false;
+    }
+
+    public function _updateReservedPlaces($flightId,$nbr){
+        $flightMdl = $this->getModelInstance('Flight');
+        $flightMdl->updateReservedPlaces($flightId,$nbr);  
     }
 
     public function reserve($params = []){
@@ -35,35 +56,55 @@ class BookingController extends Controller{
             $this->_reserve($params);
             return;
         }
-        
-        if(isset($params['book']) && !empty($params['reserveUser']) && !empty($params['reserveFlight'])){
+                
+        if(isset($params['book']) && !empty($params['reserveUser']) && !empty($params['reserveFlight1'])){
             
             $user_id = $params['reserveUser'];
-            $flight_id = $params['reserveFlight'];
-
-            $passangerMdl = $this->getModelInstance('Passanger');
-            $flightMdl = $this->getModelInstance('Flight');
-            $lastInsertedId = $this->model->insertBooking($user_id,$flight_id);
-
-            if($lastInsertedId){
-                $fname = $params['fname'];
-                $lname = $params['lname'];
-                $bdate = $params['date'];
-                $nbrOfPassangers = count($fname);
-                $i = 0;
-                foreach ($fname as $fn) {
-                    $passangerMdl->insertPassenger($lastInsertedId,$fn,$lname[$i],$bdate[$i]);
-                    $i++;
-                }
-                if ($nbrOfPassangers == $i) {
-                    $flightMdl->updateReservedPlaces($flight_id,$i);    
-                    $this->data['alert'] = "You have successfully booked $i tecket(s)";
-                    $this->data['err'] = false;  
-                    $this->data['avFlights'] = $flightMdl->selectAvFlights();          
-                    $this->view('user.views/pages/home',$this->data);
-                    return;
-                }
+            $flight_id1 = $params['reserveFlight1'];
+            $flight_id2 = $params['reserveFlight2'];
+            
+            $err = true;
+            
+            $lastInsertedId1 = $flight_id1 ? $this->model->insertBooking($user_id,$flight_id1) : false;
+            $lastInsertedId2 = $flight_id2 ? $this->model->insertBooking($user_id,$flight_id2) : false;
+            
+            if(!$lastInsertedId1) {
+                $this->data['alert'] = "Ops something went wrong";
+                $this->data['err'] = true;  
+                $this->view('user.views/pages/home',$this->data);
+                return;
             }
+            
+            if ($i = $this->_reservePassanger($lastInsertedId1,$params)) {
+                $this->_updateReservedPlaces($flight_id1,$i);
+                $err = false;
+            }
+            
+            if(!$flight_id2) {
+                $this->data['alert'] = $err ? "Ops something went wrong" : "Congratulations you have successfully booked a ticket";
+                $this->data['err'] = $err;  
+                $this->view('user.views/pages/home',$this->data); 
+                return;
+            }
+
+            if(!$lastInsertedId2 || $err) {
+                $this->data['alert'] = "Ops something went wrong";
+                $this->data['err'] = true;  
+                $this->view('user.views/pages/home',$this->data);
+                return;
+            }
+
+            $err = true;
+
+            if ($i = $this->_reservePassanger($lastInsertedId2,$params)) {
+                $this->_updateReservedPlaces($flight_id2,$i);
+                $err = false;
+            }
+
+            $this->data['alert'] = $err ? "Ops something went wrong" : "Congratulations you have successfully booked a ticket";
+            $this->data['err'] = $err;  
+            $this->view('user.views/pages/home',$this->data);
+
         }
     }
 

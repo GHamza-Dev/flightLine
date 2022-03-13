@@ -27,7 +27,8 @@
         </div>
       </div>
     </div>
-    <input type="hidden" name="reserveFlight" value="<?= $data['flightId'] ?>">
+    <input type="hidden" name="reserveFlight1" value="<?= $data['flightId'] ?>">
+    <input type="hidden" name="reserveFlight2" value="<?= $data['rFlightId'] ?>">
     <input type="hidden" name="reserveUser" value="<?= $data['userId'] ?>">
     <div class="d-flex align-items-center justify-content-end">
       <button class="add-form btn btn-warning me-3"><i class="fa-solid fa-user-plus"></i></button>
@@ -37,7 +38,10 @@
 </div>
 
 <script>
-    let nbrOfAvSeats = <?= $data['nbrOfAvSeats'] ?>;
+    const avSeats = []; 
+    avSeats[0] = <?= $data['nbrOfAvSeats'][0] ?>;
+    avSeats[1] = <?= $data['nbrOfAvSeats'][1] ? $data['nbrOfAvSeats'][1] : 90*90 ?>;
+
     let nbrOfPassangers = 2;
 
     const addFormBtn = document.querySelector('.add-form');
@@ -47,7 +51,7 @@
 
     addFormBtn.addEventListener('click',(e)=>{
       e.preventDefault();
-      if (nbrOfAvSeats < nbrOfPassangers) {
+      if (avSeats[0] < nbrOfPassangers || avSeats[1] < nbrOfPassangers) {
           alertErr.classList.add('show');
           return;
       }
