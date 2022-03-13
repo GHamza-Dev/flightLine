@@ -49,7 +49,7 @@ class UserController extends Controller{
             if ($user = $this->model->userExist($email,$password)) {
                 $username = $user['firstName'].' '.$user['lastName'];
                 new Auth($user['userID'],$username);
-                header('location:'.URLROOT.'flight/availableFlights');
+                header('location:'.URLROOT.'flight/');
                 return;
             }
         }
@@ -74,7 +74,7 @@ class UserController extends Controller{
     public function logout(){
         session_unset();
 	    session_destroy();
-        $this->redirect(URLROOT.'flight/availableFlights');
+        $this->redirect(URLROOT.'flight/');
         exit;
     }
 
