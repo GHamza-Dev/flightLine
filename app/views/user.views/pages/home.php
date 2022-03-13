@@ -95,7 +95,7 @@
   }
 
   function showFlights(element, flights) {
-    let html = flights.length < 1 ? `<p class='fs-3 text-info'>No flights occurs!</p>` : ``;
+    let html = flights.length < 1 ? `<p class='fs-3 text-info'>No flights accurs!</p>` : ``;
     flights.forEach(flight => {
       html += `
       <div class="bg-light p-3 rounded-3 my-3">
@@ -127,7 +127,7 @@
   }
   
   function showReturnFlights(element, rFlights) {
-    let html = rFlights.length < 1 ? `<p class='fs-5 text-info'>No return flights occurs!</p>` : ``;
+    let html = rFlights.length < 1 ? `<p class='fs-5 text-info'>No return flights accurs!</p>` : ``;
     rFlights.forEach(flight => {
       html += `
       <div class='d-flex justify-content-between py-2 mt-2'>
