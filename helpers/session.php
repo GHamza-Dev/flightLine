@@ -9,6 +9,10 @@ function auth(){
     return false;
 }
 
+function isAdmin(){
+    return (isset($_SESSION['logged']) && $_SESSION['role'] === 'admin');
+}
+
 function id(){
     return auth() ? $_SESSION['id'] : false;
 }

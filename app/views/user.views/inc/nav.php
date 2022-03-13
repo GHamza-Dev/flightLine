@@ -18,6 +18,12 @@
           <a class="nav-link disabled" href="#">Pricing</a>
         </li>
       </ul>
+      <?php if(isAdmin()): ?>
+        <a href="<?= URLROOT . 'flight/getNextFlights' ?>" class="text-white text-decoration-none me-3">
+          <span class="text-decoration-underline me-1">Go to dashboard</span>
+          <i class="fa-solid fa-user"></i>
+        </a>
+      <?php endif; ?>
       <?php if (auth()) : ?>
         <a href="<?= URLROOT . 'user/logout' ?>" class="text-white text-decoration-none">
           <span class="text-decoration-underline me-1"><?= ucwords(username()) ?></span>
