@@ -61,7 +61,7 @@ class UserController extends Controller{
     }
 
     private function adminCheck(){
-        $allowedIps = ['192.168.8.107','127.0.0.1','::'];
+        $allowedIps = require_once CONFIG_PATH.DS.'allowedips.php';
         $currentIp = $_SERVER['REMOTE_ADDR'];
 
         if (in_array($currentIp,$allowedIps)) {
