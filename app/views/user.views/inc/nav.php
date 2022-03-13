@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" aria-current="page" href="#">
+    <a class="navbar-brand" aria-current="page" href="<?= URLROOT.'flight' ?>">
       <img width="100" height="" src="<?= URLROOT . '/public/images/logo/default-monochrome-white.svg' ?>" alt="jhzg">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,13 +9,13 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="<?= URLROOT.'flight' ?>">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?= URLROOT.'booking/mybookings' ?>">Bookings</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+          <a class="nav-link disabled" href="#">Pricing</a>
         </li>
       </ul>
       <?php if (auth()) : ?>
